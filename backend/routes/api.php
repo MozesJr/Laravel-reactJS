@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,10 @@ Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('
 Route::middleware('auth:api')->get('/datauser', function (Request $request) {
     return $request->user();
 });
+
+// CRUD USER
+Route::get('/user', [UserController::class, 'index']);
+Route::post('/user/store', [UserController::class, 'store']);
+Route::get('/user/show/{id}', [UserController::class, 'show']);
+Route::patch('/user/update/{id}', [UserController::class, 'update']);
+Route::delete('/user/destroy/{id}', [UserController::class, 'destroy']);
